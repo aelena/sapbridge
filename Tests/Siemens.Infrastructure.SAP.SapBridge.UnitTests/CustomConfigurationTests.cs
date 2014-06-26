@@ -38,6 +38,22 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
                             SapSystemNumber = "",
                             SapUserName ="",
                             SapUserPassword =""
+                         },
+                         BapiConfigurations = new System.Collections.Generic.List<BapiConfiguration>()
+                         {
+                             new BapiConfiguration()
+                             {
+                                BapiName = @"SIE\BAPI_NAME",
+                                 Mapping = new MappingData()
+                                 {
+                                      Mappings = new System.Collections.Generic.List<Mapping>()
+                                      {
+                                          new Mapping ( "XYZA1", "customerID"),
+                                          new Mapping ( "ARKAS", "vendorID" )
+                                       },
+                                       TableName="PUSH_"
+                                 }
+                             }
                          }
                      }
                 }
@@ -86,12 +102,12 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         // ---------------------------------------------------------------------------------------------
 
         [Fact]
-        public void ShouldContainConnectionData()
+        public void ShouldContainConnectionData ()
         {
             var appNode = from applications in xDocument.Descendants ( XName.Get ( "ConnectionData" ) )
                           select applications;
             appNode.Should ().HaveCount ( 1 );
-            appNode.First ().Attribute ( XName.Get ( "language" ) ).Value.Should().BeEquivalentTo ( "EN" );
+            appNode.First ().Attribute ( XName.Get ( "language" ) ).Value.Should ().BeEquivalentTo ( "EN" );
         }
 
         // ---------------------------------------------------------------------------------------------
