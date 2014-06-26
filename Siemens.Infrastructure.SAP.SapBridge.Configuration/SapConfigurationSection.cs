@@ -16,8 +16,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
     public class SapConfigurationSection
     {
 
+
         [XmlElement ( ElementName = "Application" )]
-        public List<SapConfigurationEntry> Entries = new List<SapConfigurationEntry> ();
+        public List<ApplicationEntry> Entries = new List<ApplicationEntry> ();
 
     }
 }
