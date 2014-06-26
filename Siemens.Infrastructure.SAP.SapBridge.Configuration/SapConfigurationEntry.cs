@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
@@ -22,6 +19,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
 
         [XmlElement ( ElementName = "ConnectionData" )]
         public ConnectionData ConnectionData { get; set; }
+
+        [XmlElement ( ElementName = "BapiConfigurationBlock" )]
+        public List<BapiConfiguration> BapiConfigurations = new List<BapiConfiguration> ();
 
     }
 
