@@ -30,15 +30,42 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         {
 
             var root = new SapConfigurationSection ();
-            root.Entries.Add ( new ApplicationEntry ( "MDM" ) );
+            root.Entries.Add ( new ApplicationEntry ( "MDM" )
+            {
+                SapConfigurationEntries = new System.Collections.Generic.List<SapConfigurationEntry> () { 
+                    new SapConfigurationEntry() { Company="1234", Environment="Q"}}
+            } );
 
             var _xml = XmlSerializerSectionHandler.SerializeObject ( root );
 
             var xDoc = XDocument.Parse ( _xml );
-            var appNode = from applications in xDoc.Descendants(XName.Get("Application"))
+            var appNode = from applications in xDoc.Descendants ( XName.Get ( "Application" ) )
                           select applications;
 
-            appNode.First ().FirstAttribute.Value.Should ().Equals ( "MDM" );
+            appNode.First ().FirstAttribute.Value.Should ().BeEquivalentTo ( "MDM" );
+
+        }
+
+
+        [Fact]
+        public void ShouldContainCorrectSapConfigurationEntryNode ()
+        {
+
+            var root = new SapConfigurationSection ();
+            root.Entries.Add ( new ApplicationEntry ( "MDM" )
+            {
+                SapConfigurationEntries = new System.Collections.Generic.List<SapConfigurationEntry> () { 
+                    new SapConfigurationEntry() { Company="1234", Environment="Q"}}
+            } );
+
+            var _xml = XmlSerializerSectionHandler.SerializeObject ( root );
+
+            var xDoc = XDocument.Parse ( _xml );
+            var appNode = from applications in xDoc.Descendants ( XName.Get ( "SapConfigurationEntry" ) )
+                          select applications;
+
+            appNode.First ().FirstAttribute.Value.Should ().BeEquivalentTo ( "1234" );
+            appNode.First ().LastAttribute.Value.Should ().BeEquivalentTo ( "Q" );
 
 
         }
