@@ -21,7 +21,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         public ConnectionData ConnectionData { get; set; }
 
         [XmlElement ( ElementName = "BapiConfigurationBlock" )]
-        public List<BapiConfiguration> BapiConfigurations = new List<BapiConfiguration> ();
+        public BapiConfigurationBlock BapiConfigurations = new BapiConfigurationBlock ();
 
     }
 

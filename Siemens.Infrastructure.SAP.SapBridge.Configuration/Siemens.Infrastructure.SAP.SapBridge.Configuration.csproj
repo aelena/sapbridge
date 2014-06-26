@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="ApplicationEntry.cs" />
     <Compile Include="BapiConfiguration.cs" />
+    <Compile Include="BapiConfigurationBlock.cs" />
     <Compile Include="ConnectionData.cs" />
     <Compile Include="Mapping.cs" />
     <Compile Include="MappingData.cs" />
