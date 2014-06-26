@@ -3,16 +3,15 @@
   <Application name="MDM">
     <SapConfigurationEntries>
       <SapConfigurationEntry company="1234" environment="Q">
-        <ConnectionData>
-          <SapUserName value="" />
-          <SapUserPassword value="" />
-          <SapHostName value="" />
-          <SapSystemNumber value="" />
-          <SapClientSystem value="" />
-          <Language value="" />
-          <PoolSize value=""/>
-          <MaxPoolSize value="" />
-          <IdleTimeout value="" />
+        <ConnectionData sapUserName=""
+                        sapUserPassword=""
+                        sapHostName=""
+                        sapSystemNumber=""
+                        sapClientSystem=""
+                        language=""
+                        poolSize=""
+                        maxPoolSize=""
+                        idleTimeout="">
         </ConnectionData>
         <BapiConfigurationBlock>
           <BapiConfiguration bapiName="/SIE/SWE_MM_GRTO1">

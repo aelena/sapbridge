@@ -19,11 +19,15 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
 
         [XmlAttribute ( "environment" )]
         public string Environment { get; set; }
+
+        [XmlElement ( ElementName = "ConnectionData" )]
+        public ConnectionData ConnectionData { get; set; }
+
     }
 
 
 
-  
+
 
 
 
