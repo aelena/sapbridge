@@ -31,6 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,8 +41,10 @@
     <Reference Include="System.Xml.Serialization" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SapConfigurationData.cs" />
+    <Compile Include="SapConfigurationSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SapConfigurationEntry.cs" />
+    <Compile Include="Tools\XmlSerializerSectionHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="_sample.xml" />

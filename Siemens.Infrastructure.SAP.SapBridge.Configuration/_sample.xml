@@ -1,28 +1,32 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SapConfigurationSection>
-  <SapConfigurationEntry company="1234" environment="Q">
-    <ConnectionData>
-      <SapUserName value="" />
-      <SapUserPassword value="" />
-      <SapHostName value="" />
-      <SapSystemNumber value="" />
-      <SapClientSystem value="" />
-      <Language value="" />
-      <PoolSize value=""/>
-      <MaxPoolSize value="" />
-      <IdleTimeout value="" />
-    </ConnectionData>
-    <BapiConfigurationBlock>
-      <BapiConfiguration bapiName="/SIE/SWE_MM_GRTO1">
-        <Mappings tableName="PUSH">
-          <Mapping sapName="XYZA1" fieldName="customerID" />
-        </Mappings>
-      </BapiConfiguration>
-      <BapiConfiguration bapiName="/SIE/SWE_MM_GRTO2">
-        <Mappings tableName="PULL">
-          <Mapping sapName="XYZA1" fieldName="customerID" />
-        </Mappings>
-      </BapiConfiguration>
-    </BapiConfigurationBlock>
-  </SapConfigurationEntry>
+  <Application name="MDM">
+    <SapConfigurationEntries>
+      <SapConfigurationEntry company="1234" environment="Q">
+        <ConnectionData>
+          <SapUserName value="" />
+          <SapUserPassword value="" />
+          <SapHostName value="" />
+          <SapSystemNumber value="" />
+          <SapClientSystem value="" />
+          <Language value="" />
+          <PoolSize value=""/>
+          <MaxPoolSize value="" />
+          <IdleTimeout value="" />
+        </ConnectionData>
+        <BapiConfigurationBlock>
+          <BapiConfiguration bapiName="/SIE/SWE_MM_GRTO1">
+            <Mappings tableName="PUSH">
+              <Mapping sapName="XYZA1" fieldName="customerID" />
+            </Mappings>
+          </BapiConfiguration>
+          <BapiConfiguration bapiName="/SIE/SWE_MM_GRTO2">
+            <Mappings tableName="PULL">
+              <Mapping sapName="XYZA1" fieldName="customerID" />
+            </Mappings>
+          </BapiConfiguration>
+        </BapiConfigurationBlock>
+      </SapConfigurationEntry>
+    </SapConfigurationEntries>
+  </Application>
 </SapConfigurationSection>
