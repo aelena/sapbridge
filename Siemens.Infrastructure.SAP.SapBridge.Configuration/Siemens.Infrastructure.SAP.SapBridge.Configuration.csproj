@@ -42,7 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationEntry.cs" />
+    <Compile Include="BapiConfiguration.cs" />
     <Compile Include="ConnectionData.cs" />
+    <Compile Include="Mapping.cs" />
+    <Compile Include="MappingData.cs" />
     <Compile Include="SapConfigurationSection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SapConfigurationEntry.cs" />
