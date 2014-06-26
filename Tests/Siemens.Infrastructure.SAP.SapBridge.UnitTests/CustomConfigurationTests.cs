@@ -4,6 +4,7 @@ using Xunit;
 using FluentAssertions;
 using System.Xml.Linq;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
 {
@@ -39,19 +40,34 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
                             SapUserName ="",
                             SapUserPassword =""
                          },
-                         BapiConfigurations = new System.Collections.Generic.List<BapiConfiguration>()
-                         {
-                             new BapiConfiguration()
+                         BapiConfigurations = new BapiConfigurationBlock() { 
+                             BapiConfigurations = new List<BapiConfiguration>() 
                              {
-                                BapiName = @"SIE\BAPI_NAME",
-                                 Mapping = new MappingData()
+                                 new BapiConfiguration()
                                  {
-                                      Mappings = new System.Collections.Generic.List<Mapping>()
-                                      {
-                                          new Mapping ( "XYZA1", "customerID"),
-                                          new Mapping ( "ARKAS", "vendorID" )
-                                       },
-                                       TableName="PUSH_"
+                                    BapiName = @"SIE\BAPI_NAME",
+                                     Mapping = new MappingData()
+                                     {
+                                          Mappings = new System.Collections.Generic.List<Mapping>()
+                                          {
+                                              new Mapping ( "XYZA1", "customerID"),
+                                              new Mapping ( "ARKAS", "vendorID" )
+                                           },
+                                           TableName="PUSH_"
+                                     }
+                                 },
+                                 new BapiConfiguration()
+                                 {
+                                    BapiName = @"SIE\BAPI_NAME2",
+                                     Mapping = new MappingData()
+                                     {
+                                          Mappings = new System.Collections.Generic.List<Mapping>()
+                                          {
+                                              new Mapping ( "RIRI1", "productID"),
+                                              new Mapping ( "VIAIV", "orderID" )
+                                           },
+                                           TableName="PUSH_"
+                                     }
                                  }
                              }
                          }
@@ -112,6 +128,26 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
 
         // ---------------------------------------------------------------------------------------------
 
+        [Fact]
+        public void ShouldContainBapiConfigurationBlock ()
+        {
+            var appNode = from applications in xDocument.Descendants ( XName.Get ( "BapiConfigurationBlock" ) )
+                          select applications;
+            appNode.Should ().HaveCount ( 1 );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldContainConfigurationForIndividualBapis ()
+        {
+            var appNode = from applications in xDocument.Descendants ( XName.Get ( "BapiConfiguration" ) )
+                          select applications;
+            appNode.Should ().HaveCount ( 2 );
+            appNode.First ().Attribute ( XName.Get ( "bapiName" ) ).Value.Should ().BeEquivalentTo ( @"SIE\BAPI_NAME" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
 
     }
 
