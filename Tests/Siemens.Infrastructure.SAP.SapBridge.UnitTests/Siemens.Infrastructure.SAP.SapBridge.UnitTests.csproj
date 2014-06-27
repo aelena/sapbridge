@@ -36,6 +36,12 @@
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\..\packages\FluentAssertions.3.0.107\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="sapnco">
+      <HintPath>..\..\..\_old\MADAM__CODE\MADAM__CODE\Atos_W4E\BranchesW4E_WebEntityApplication\Main\bin\sapnco.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco_utils">
+      <HintPath>..\..\..\_old\MADAM__CODE\MADAM__CODE\Atos_W4E\BranchesW4E_WebEntityApplication\Main\bin\sapnco_utils.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -51,6 +57,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationFileTests.cs" />
     <Compile Include="CustomConfigurationTests.cs" />
+    <Compile Include="Internal API tests\SearchProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +72,13 @@
       <Project>{53e30c83-5de7-42e0-9584-0c26c323599a}</Project>
       <Name>Siemens.Infrastructure.SAP.SapBridge.Configuration</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Siemens.Infrastructure.SAP.SapBridge\Siemens.Infrastructure.SAP.SapBridge.csproj">
+      <Project>{dcb33877-d2ab-4057-a206-30a862506db0}</Project>
+      <Name>Siemens.Infrastructure.SAP.SapBridge</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="External API tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
