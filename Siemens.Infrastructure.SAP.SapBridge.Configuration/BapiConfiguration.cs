@@ -8,6 +8,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         [XmlAttribute ( AttributeName = "bapiName" )]
         public string BapiName { get; set; }
 
+        [XmlAttribute ( AttributeName = "operation" )]
+        public string Operation { get; set; }
+
         [XmlElement ( ElementName = "Mappings" )]
         public MappingData Mapping = new MappingData ();
     }
