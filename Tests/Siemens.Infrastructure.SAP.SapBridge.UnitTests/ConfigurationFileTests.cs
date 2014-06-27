@@ -38,6 +38,15 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
 
         // ---------------------------------------------------------------------------------------------
 
+
+        [Fact]
+        public void ShouldFindACorrectApplicationCode ()
+        {
+            _config.Entries.Where ( x => x.Name.Equals ( "MDMC" ) ).Should ().HaveCount ( 1 );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
         [Fact]
         public void ShouldGetTwoCompanyCodesConfiguredPerApplication ()
         {
@@ -72,6 +81,10 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
             _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Last ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_GRTO2" );
             _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.First ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_XAXA1" );
             _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.Last ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_XAXA2" );
+            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.First ().Operation.Should ().BeEquivalentTo ( "SEARCH" );
+            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Last ().Operation.Should ().BeEquivalentTo ( "WRITE" );
+            _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.First ().Operation.Should ().BeEquivalentTo ( "SEARCH" );
+            _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.Last ().Operation.Should ().BeEquivalentTo ( "WRITE" );
         }
 
         // ---------------------------------------------------------------------------------------------

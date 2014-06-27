@@ -46,6 +46,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
                                  new BapiConfiguration()
                                  {
                                     BapiName = @"SIE\BAPI_NAME",
+                                    Operation = "SEARCH",
                                      Mapping = new MappingData()
                                      {
                                           Mappings = new System.Collections.Generic.List<Mapping>()
@@ -59,6 +60,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
                                  new BapiConfiguration()
                                  {
                                     BapiName = @"SIE\BAPI_NAME2",
+                                    Operation = "WRITE",
                                      Mapping = new MappingData()
                                      {
                                           Mappings = new System.Collections.Generic.List<Mapping>()
