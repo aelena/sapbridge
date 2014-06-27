@@ -59,6 +59,7 @@
     <Compile Include="CustomConfigurationTests.cs" />
     <Compile Include="Internal API tests\SearchProviderTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_code tests\CodingTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
