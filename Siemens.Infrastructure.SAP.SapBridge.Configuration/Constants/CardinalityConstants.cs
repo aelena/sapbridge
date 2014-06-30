@@ -37,5 +37,22 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration.Constants
         /// 1-n - at least one instance of the mapping to be sent to SAP
         /// </summary>
         public const string OneOrN = "1-n";
+
+        /// <summary>
+        /// Returns all constants as a IEnumerable of type
+        /// string to facilitate checking.
+        /// </summary>
+        /// <returns></returns>
+        public static IEnumerable<string> AsList()
+        {
+            return new List<string> {
+
+                CardinalityConstants.ExactlyOne,
+                CardinalityConstants.OneOrN,
+                CardinalityConstants.ZeroOrN,
+                CardinalityConstants.ZeroOrOne
+
+            };
+        }
     }
 }
