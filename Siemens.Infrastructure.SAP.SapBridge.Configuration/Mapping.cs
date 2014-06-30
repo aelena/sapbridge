@@ -14,6 +14,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         [XmlAttribute ( AttributeName = "fieldName" )]
         public string FieldName { get; set; }
 
+        [XmlAttribute ( AttributeName = "returnType" )]
+        public bool IsReturnType { get; set; }
+
         public Mapping () { }
 
         public Mapping ( string sapName, string fieldName)
