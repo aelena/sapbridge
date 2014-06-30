@@ -6,11 +6,22 @@ using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
 using Siemens.Infrastructure.SAP.SapBridge.Configuration.Constants;
+using Siemens.Infrastructure.SAP.SapBridge.Configuration;
+using System.Configuration;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
 {
     public class CardinalityTests
     {
+
+        SapConfigurationSection _config = null;
+        public CardinalityTests ()
+        {
+            _config = ( SapConfigurationSection ) ConfigurationManager.GetSection ( "SapConfigurationSection" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
 
         [Fact]
         public void ShouldValidateCorrectCardinality ()
@@ -21,11 +32,15 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
             CardinalityConstants.ZeroOrOne.Should ().BeEquivalentTo ( "0-1" );
         }
 
+        // ---------------------------------------------------------------------------------------------
+
         [Fact]
         public void ShouldReturnListWithFourElements ()
         {
             CardinalityConstants.AsList ().Should ().HaveCount ( 4 );
         }
+
+        // ---------------------------------------------------------------------------------------------
 
         [Fact]
         public void ShouldContainStringInAsListReturn ()
@@ -36,12 +51,16 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
             CardinalityConstants.AsList ().Should ().Contain ( "1-n" );
         }
 
+        // ---------------------------------------------------------------------------------------------
+
         [Fact]
         public void ShouldNotContainStringInAsListReturn ()
         {
             CardinalityConstants.AsList ().Should ().NotContain ( "0" );
             CardinalityConstants.AsList ().Should ().NotContain ( "n" );
         }
+
+        // ---------------------------------------------------------------------------------------------
 
     }
 }

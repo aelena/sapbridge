@@ -90,5 +90,16 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
 
         // ---------------------------------------------------------------------------------------------
 
+        [Fact]
+        public void ShouldObtainAllMappingsForAGivenCompanyAndEnvironment ()
+        {
+            var _x = _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Company == "1234" && x.Environment == "Q" );
+            _x.Should ().HaveCount ( 1 );
+            var _mappings = _x.First ().GetMappingsForBAPI ( @"/SIE/SWE_MM_GRTO1" );
+            _mappings.Should ().HaveCount ( 3 );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
     }
 }

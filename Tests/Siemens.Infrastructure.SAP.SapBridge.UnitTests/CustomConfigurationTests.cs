@@ -47,28 +47,32 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
                                  {
                                     BapiName = @"SIE\BAPI_NAME",
                                     Operation = "SEARCH",
-                                     Mapping = new MappingData()
+                                     Mapping = new List<MappingData>()
                                      {
-                                          Mappings = new System.Collections.Generic.List<Mapping>()
-                                          {
-                                              new Mapping ( "XYZA1", "customerID"),
-                                              new Mapping ( "ARKAS", "vendorID" )
-                                           },
-                                           TableName="PUSH_"
+                                         new MappingData(){
+                                              Mappings = new System.Collections.Generic.List<Mapping>()
+                                              {
+                                                  new Mapping ( "XYZA1", "customerID"),
+                                                  new Mapping ( "ARKAS", "vendorID" )
+                                               },
+                                               TableName="PUSH_"
+                                         }
                                      }
                                  },
                                  new BapiConfiguration()
                                  {
                                     BapiName = @"SIE\BAPI_NAME2",
                                     Operation = "WRITE",
-                                     Mapping = new MappingData()
+                                     Mapping = new List<MappingData>()
                                      {
-                                          Mappings = new System.Collections.Generic.List<Mapping>()
-                                          {
-                                              new Mapping ( "RIRI1", "productID"),
-                                              new Mapping ( "VIAIV", "orderID" )
-                                           },
-                                           TableName="PUSH_"
+                                         new MappingData(){
+                                              Mappings = new System.Collections.Generic.List<Mapping>()
+                                              {
+                                                  new Mapping ( "RIRI1", "productID"),
+                                                  new Mapping ( "VIAIV", "orderID" )
+                                               },
+                                               TableName="PUSH_"
+                                         }
                                      }
                                  }
                              }

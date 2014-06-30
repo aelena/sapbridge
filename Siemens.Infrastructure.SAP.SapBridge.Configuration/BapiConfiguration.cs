@@ -12,6 +12,6 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         public string Operation { get; set; }
 
         [XmlElement ( ElementName = "Mappings" )]
-        public MappingData Mapping = new MappingData ();
+        public List<MappingData> Mapping = new List<MappingData>();
     }
 }

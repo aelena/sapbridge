@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Linq;
+using System.Collections.Generic;
 using System.Xml.Serialization;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
@@ -22,6 +23,16 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
 
         [XmlElement ( ElementName = "BapiConfigurationBlock" )]
         public BapiConfigurationBlock BapiConfigurations = new BapiConfigurationBlock ();
+
+        public IEnumerable<MappingData> GetMappingsForBAPI ( string bapiName )
+        {
+            var _bapiConfig = this.BapiConfigurations.BapiConfigurations.Where ( x => x.BapiName == bapiName );
+            if ( _bapiConfig != null && _bapiConfig.Count() > 0)
+                return _bapiConfig.First ().Mapping;
+            return null;
+
+
+        }
 
     }
 
