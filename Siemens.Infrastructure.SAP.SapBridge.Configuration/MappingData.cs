@@ -42,7 +42,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         /// <summary>
         /// Represents the mapping type ( object or table )
         /// </summary>
-        [XmlAttribute ( AttributeName = "cardinality" )]
+        [XmlAttribute ( AttributeName = "mappingType" )]
         public string MappingType { get; set; }
 
         [XmlElement ( ElementName = "mappingType" )]
