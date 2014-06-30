@@ -50,7 +50,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         [Fact]
         public void ShouldGetTwoCompanyCodesConfiguredPerApplication ()
         {
-            _config.Entries.First ().SapConfigurationEntries.Should ().HaveCount ( 2 );
+            _config.Entries.First ().SapConfigurationEntries.Should ().HaveCount ( 3 );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -60,7 +60,8 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         {
             _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Company == "1234" ).Count ().Should ().Be ( 1 );
             _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Company == "5290" ).Count ().Should ().Be ( 1 );
-            _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Environment == "Q" ).Count ().Should ().Be ( 2 );
+            _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Company == "*" ).Count ().Should ().Be ( 1 );
+            _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Environment == "Q" ).Count ().Should ().Be ( 3 );
         }
 
         // ---------------------------------------------------------------------------------------------

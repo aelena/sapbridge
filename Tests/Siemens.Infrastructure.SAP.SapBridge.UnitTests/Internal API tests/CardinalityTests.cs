@@ -13,7 +13,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
     {
 
         [Fact]
-        public void ShouldValidateCorrectCardinality()
+        public void ShouldValidateCorrectCardinality ()
         {
             CardinalityConstants.ExactlyOne.Should ().BeEquivalentTo ( "1" );
             CardinalityConstants.OneOrN.Should ().BeEquivalentTo ( "1-n" );
@@ -22,18 +22,25 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         }
 
         [Fact]
-        public void ShouldReturnListWithFourElements()
+        public void ShouldReturnListWithFourElements ()
         {
             CardinalityConstants.AsList ().Should ().HaveCount ( 4 );
         }
 
         [Fact]
-        public void ShouldContainStringInAsListReturn()
+        public void ShouldContainStringInAsListReturn ()
         {
             CardinalityConstants.AsList ().Should ().Contain ( "1" );
             CardinalityConstants.AsList ().Should ().Contain ( "0-1" );
             CardinalityConstants.AsList ().Should ().Contain ( "0-n" );
             CardinalityConstants.AsList ().Should ().Contain ( "1-n" );
+        }
+
+        [Fact]
+        public void ShouldNotContainStringInAsListReturn ()
+        {
+            CardinalityConstants.AsList ().Should ().NotContain ( "0" );
+            CardinalityConstants.AsList ().Should ().NotContain ( "n" );
         }
 
     }
