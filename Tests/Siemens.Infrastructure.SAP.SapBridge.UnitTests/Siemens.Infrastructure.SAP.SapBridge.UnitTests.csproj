@@ -57,10 +57,14 @@
   <ItemGroup>
     <Compile Include="ConfigurationFileTests.cs" />
     <Compile Include="CustomConfigurationTests.cs" />
+    <Compile Include="External API tests\ServiceProviderTests.cs" />
+    <Compile Include="Internal API tests\BaseProviderTests.cs" />
     <Compile Include="Internal API tests\CardinalityTests.cs" />
     <Compile Include="Internal API tests\SearchProviderTests.cs" />
+    <Compile Include="Internal API tests\TestsWithDummyTypes.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="_code tests\CodingTests.cs" />
+    <Compile Include="_code tests\DummyTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -80,7 +84,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="External API tests\" />
+    <Folder Include="_dummy classes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

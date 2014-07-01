@@ -69,23 +69,23 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         [Fact]
         public void ShouldHaveTwoBapiConfiguration ()
         {
-            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 2 );
-            _config.Entries.First ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 2 );
+            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 4 );
+            _config.Entries.First ().SapConfigurationEntries.ElementAt(1).BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 2 );
         }
 
         // ---------------------------------------------------------------------------------------------
 
         [Fact]
-        public void ShouldHaveCorrectBapiConfiguration2 ()
+        public void ShouldHaveCorrectBapiConfiguration ()
         {
             _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.First ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_GRTO1" );
-            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Last ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_GRTO2" );
+            _config.Entries.First ().SapConfigurationEntries.ElementAt (2).BapiConfigurations.BapiConfigurations.Last ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_GRTO2" );
             _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.First ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_XAXA1" );
             _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.Last ().BapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_XAXA2" );
             _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.First ().Operation.Should ().BeEquivalentTo ( "SEARCH" );
-            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Last ().Operation.Should ().BeEquivalentTo ( "WRITE" );
+            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.ElementAt ( 1 ).Operation.Should ().BeEquivalentTo ( "WRITE" );
             _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.First ().Operation.Should ().BeEquivalentTo ( "SEARCH" );
-            _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.Last ().Operation.Should ().BeEquivalentTo ( "WRITE" );
+            _config.Entries.Last ().SapConfigurationEntries.Last ().BapiConfigurations.BapiConfigurations.Last().Operation.Should ().BeEquivalentTo ( "WRITE" );
         }
 
         // ---------------------------------------------------------------------------------------------
