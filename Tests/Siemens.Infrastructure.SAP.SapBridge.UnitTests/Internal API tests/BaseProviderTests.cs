@@ -6,19 +6,30 @@ using System.Threading.Tasks;
 using Xunit;
 using FluentAssertions;
 using Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies;
+using Siemens.Infrastructure.SAP.SapBridge.Configuration;
+using System.Configuration;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
 {
     public class BaseProviderTests
     {
+
+        SapConfigurationSection _config = null;
+        public BaseProviderTests ()
+        {
+            _config = ( SapConfigurationSection ) ConfigurationManager.GetSection ( "SapConfigurationSection" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
         [Fact]
         public void ShouldFindTypeInObjectGraph_1 ()
         {
             var foo = new Foo ();
-            var sp= new ServiceProvider();
+            var sp = new ServiceProvider ();
             var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo", foo );
             t.Should ().NotBeNull ();
-            t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo");
+            t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo" );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -68,7 +79,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
 
         // ---------------------------------------------------------------------------------------------
 
-       
+
+
+
 
     }
 }
