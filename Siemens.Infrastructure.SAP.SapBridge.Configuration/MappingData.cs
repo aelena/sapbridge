@@ -45,7 +45,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         [XmlAttribute ( AttributeName = "mappingType" )]
         public string MappingType { get; set; }
 
-        [XmlElement ( ElementName = "mappingType" )]
+        [XmlElement ( ElementName = "Mapping" )]
         public List<Mapping> Mappings = new List<Mapping> ();
 
     }
