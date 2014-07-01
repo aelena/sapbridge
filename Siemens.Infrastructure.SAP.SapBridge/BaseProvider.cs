@@ -14,7 +14,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
     public class BaseProvider
     {
 
-        SapConfigurationSection _configuration;
+        private readonly SapConfigurationSection _configuration;
         public SapConfigurationSection Configuration
         {
             get
@@ -28,7 +28,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         public BaseProvider ()
         {
-            this.ReadConfiguration ();
+            this._configuration = this.ReadConfiguration ();
         }
 
         // ---------------------------------------------------------------------------------------------
