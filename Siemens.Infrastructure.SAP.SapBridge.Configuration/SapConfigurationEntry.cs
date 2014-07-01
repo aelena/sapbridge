@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Collections.Generic;
 using System.Xml.Serialization;
+using System;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
 {
@@ -56,9 +57,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge.Configuration
         /// the configuration.
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<string> GetOperations ()
+        public IEnumerable<Tuple<string,string>> GetBAPIsAndOperations ()
         {
-            return this.BapiConfigurations.BapiConfigurations.Select ( x =>  x.Operation );
+            return this.BapiConfigurations.BapiConfigurations.Select ( x => new Tuple<string, string> ( x.BapiName, x.Operation ) );
         }
 
         // ---------------------------------------------------------------------------------------------

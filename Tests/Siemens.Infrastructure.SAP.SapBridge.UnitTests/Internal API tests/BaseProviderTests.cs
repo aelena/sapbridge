@@ -79,8 +79,27 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
 
         // ---------------------------------------------------------------------------------------------
 
+        [Fact]
+        public void ShouldFindBAPINameForOperationName ()
+        {
+            var bp = new BaseProvider ();
+            var bapiName = bp.FindBAPIForOperation ( "1234", "Q", "SEARCH" );
+            bapiName.Should ().BeEquivalentTo ( "/SIE/SWE_MM_GRTO1" );
 
+        }
 
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldReturnNullForWrongOperationName ()
+        {
+            var bp = new BaseProvider ();
+            var bapiName = bp.FindBAPIForOperation ( "1234", "Q", "SEARCH___" );
+            bapiName.Should ().BeNull ();
+
+        }
+
+        // ---------------------------------------------------------------------------------------------
 
 
     }

@@ -106,7 +106,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         {
             var _x = _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Company == "1234" && x.Environment == "Q" );
             _x.Should ().HaveCount ( 1 );
-            var _ops = _x.First ().GetOperations ();
+            var _ops = _x.First ().GetBAPIsAndOperations ();
             _ops.Should ().HaveCount ( 4 );
         }
 

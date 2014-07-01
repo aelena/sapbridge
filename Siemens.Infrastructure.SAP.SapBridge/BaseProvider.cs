@@ -123,5 +123,23 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         // ---------------------------------------------------------------------------------------------
 
+        protected internal string FindBAPIForOperation(string companyCode, string environment, string operationName)
+        {
+            var _x = this.GetConfigurationForCompanyAndEnvironment ( companyCode, environment );
+            var opName = _x.First ().GetBAPIsAndOperations ().Where ( x => x.Item2 == operationName );
+            return ( opName != null && opName.Count () > 0 ) ? opName.First ().Item1 : null;
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        private List<SapConfigurationEntry> GetConfigurationForCompanyAndEnvironment ( string companyCode, string environment )
+        {
+            var _x = this.Configuration.Entries.First ().SapConfigurationEntries.FindAll (
+                x => x.Company == companyCode && x.Environment == environment );
+            return _x;
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
     }
 }

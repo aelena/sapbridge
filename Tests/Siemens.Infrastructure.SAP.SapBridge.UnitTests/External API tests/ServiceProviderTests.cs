@@ -56,5 +56,17 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.External_API_tests
             CardinalityConstants.AsList ().Should ().Contain ( _sasha.ElementAt ( 4 ).Cardinality );
 
         }
+
+        // ---------------------------------------------------------------------------------------------
+
+        //[Fact]
+        //public void ShouldMapSimpleObjectToDataTable()
+        //{
+        //    var sp = new ServiceProvider ();
+        //    sp.MapDataTable ( "1234", "Q", "", null );
+        //}
+
+        // ---------------------------------------------------------------------------------------------
+
     }
 }
