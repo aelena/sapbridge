@@ -233,6 +233,33 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         // ---------------------------------------------------------------------------------------------
 
+        protected internal IEnumerable<MappingData> FindAllTypes ( string companyCode, string environment, string bapiName )
+        {
+            var mappings = this.GetMappingsForCompanyEnvironmentAndBAPIName ( companyCode, environment, bapiName );
+            var _allTypes = from map in mappings
+                            select new
+                            {
+                                map.TypeName
+                            };
+            return mappings;
+        }
 
+
+        // ---------------------------------------------------------------------------------------------
+
+        internal IEnumerable<MappingData> GetMappingsForCompanyEnvironmentAndBAPIName ( string companyCode,
+                                                                    string environment,
+                                                                        string bapiName )
+        {
+
+            var _x = this.Configuration.Entries.First ().SapConfigurationEntries.FindAll (
+                x => x.Company == companyCode && x.Environment == environment );
+            if ( _x != null && _x.Count () > 0 )
+                return _x.First ().GetMappingsForBAPI ( bapiName );
+            return null;
+        }
+
+
+        // ---------------------------------------------------------------------------------------------
     }
 }

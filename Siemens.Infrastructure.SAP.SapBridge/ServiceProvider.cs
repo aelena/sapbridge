@@ -94,12 +94,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         public void MapObject ( string companyCode, string environment, string bapiName, object rootObject )
         {
             // obtains the mappings for these 3 criteria, companyCode, environment, bapiName
-            var mappings = this.GetMappingsForCompanyEnvironmentAndBAPIName ( companyCode, environment, bapiName );
-            var _allTypes = from map in mappings
-                            select new
-                            {
-                                map.TypeName
-                            };
+            var mappings = FindAllTypes ( companyCode, environment, bapiName );
             if ( mappings != null )
             {
                 foreach ( var mapping in mappings )
@@ -109,7 +104,10 @@ namespace Siemens.Infrastructure.SAP.SapBridge
             }
         }
 
+
         // ---------------------------------------------------------------------------------------------
+
+       
 
         public void MapObject_2 ( string companyCode,
                                 string environment,
@@ -128,20 +126,6 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         // ---------------------------------------------------------------------------------------------
 
 
-        internal IEnumerable<MappingData> GetMappingsForCompanyEnvironmentAndBAPIName ( string companyCode,
-                                                                    string environment,
-                                                                        string bapiName )
-        {
-
-            var _x = this.Configuration.Entries.First ().SapConfigurationEntries.FindAll (
-                x => x.Company == companyCode && x.Environment == environment );
-            if ( _x != null && _x.Count () > 0 )
-                return _x.First ().GetMappingsForBAPI ( bapiName );
-            return null;
-        }
-
-
-        // ---------------------------------------------------------------------------------------------
 
     }
 }
