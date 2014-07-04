@@ -69,7 +69,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         [Fact]
         public void ShouldHaveTwoBapiConfiguration ()
         {
-            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 4 );
+            _config.Entries.First ().SapConfigurationEntries.First ().BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 5 );
             _config.Entries.First ().SapConfigurationEntries.ElementAt(1).BapiConfigurations.BapiConfigurations.Should ().HaveCount ( 2 );
         }
 
@@ -107,7 +107,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
             var _x = _config.Entries.First ().SapConfigurationEntries.FindAll ( x => x.Company == "1234" && x.Environment == "Q" );
             _x.Should ().HaveCount ( 1 );
             var _ops = _x.First ().GetBAPIsAndOperations ();
-            _ops.Should ().HaveCount ( 4 );
+            _ops.Should ().HaveCount ( 5 );
         }
 
         // ---------------------------------------------------------------------------------------------

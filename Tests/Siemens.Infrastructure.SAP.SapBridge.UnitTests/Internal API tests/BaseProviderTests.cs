@@ -73,8 +73,8 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Curge", foo );
-            t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Curge" );
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Corge", foo );
+            t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Corge" );
         }
 
         // ---------------------------------------------------------------------------------------------

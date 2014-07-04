@@ -32,20 +32,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         // ---------------------------------------------------------------------------------------------
 
 
-        internal RfcConfigParameters GetConnectionParameters ( string applicationCode,
-                                                                string environment,
-                                                                string operation,
-                                                                string companyCode,
-                                                                SapConfigurationSection configuration = null )
-        {
-
-            var configurationInstance = this.ReadSpecificConnectionDataEntry ( applicationCode, environment, companyCode, configuration );
-            return this.MapConnectionDataToRfcConfigParameters ( configurationInstance );
-
-        }
-
-        // ---------------------------------------------------------------------------------------------
-
+        
 
 
     }

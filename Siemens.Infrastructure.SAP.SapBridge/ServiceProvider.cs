@@ -12,6 +12,21 @@ namespace Siemens.Infrastructure.SAP.SapBridge
     public class ServiceProvider : BaseProvider
     {
 
+        private readonly RfcDestination RfcDestination;
+
+        // ----------------------------------------------------------------------------------------------------------------
+
+        public RfcDestination GetDestinationConfiguration ( string applicationCode, string companyCode, string environment )
+        {
+            RfcDestination _rfcDest01 = RfcDestinationManager.GetDestination ( this.MapConnectionDataToRfcConfigParameters (
+                this.ReadSpecificConnectionDataEntry ( applicationCode, environment, companyCode, null ) ) );
+            return _rfcDest01;
+        }
+
+
+        // ----------------------------------------------------------------------------------------------------------------
+
+
         /// <summary>
         /// Clients will call this method when they want to perform searches against SAP.
         /// </summary>
@@ -48,43 +63,28 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         // ---------------------------------------------------------------------------------------------
 
 
-        public void MapDataTable ( string companyCode, string environment, string operationName, DataTable dataTable )
+        public IRfcTable MapDataTableToIRfcTable ( string applicationCode, string companyCode, string environment, string operationName, DataTable dataTable )
         {
 
-            //var repo01 = RfcDestination.Repository;
-            //// get the bapi reference
-            //IRfcFunction saveBAPI = repo01.CreateFunction ( ConfigurationManager.AppSettings [ "saveBAPI" ] );
-            //IRfcTable inputTable = saveBAPI.GetTable ( "PUSH" );
-            //inputTable.Append ( dataTable.Rows.Count );
-            //for ( int i = 0; i < dataTable.Rows.Count; i++ )
-            //{
-            //    inputTable [ i ].SetValue ( "EBELN", Convert.ToString ( dataTable.Rows [ i ] [ "EBELN" ] ) );
-            //    inputTable [ i ].SetValue ( "EBELP", Convert.ToString ( dataTable.Rows [ i ] [ "EBELP" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_TICK", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_TICK" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_SEC", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_SEC" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_DIVI", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_DIVI" ] ) );
-            //    inputTable [ i ].SetValue ( "BLDAT", Convert.ToDateTime ( dataTable.Rows [ i ] [ "BLDAT" ] ).ToString ( "yyyyMMdd", System.Globalization.CultureInfo.InvariantCulture ) );
-            //    inputTable [ i ].SetValue ( "BWART", Convert.ToString ( dataTable.Rows [ i ] [ "BWART" ] ) );
-            //    inputTable [ i ].SetValue ( "ERFMG", Convert.ToDouble ( dataTable.Rows [ i ] [ "ERFMG" ] ) );
-            //    inputTable [ i ].SetValue ( "LFSNR", Convert.ToString ( dataTable.Rows [ i ] [ "LFSNR" ] ) );
-            //    inputTable [ i ].SetValue ( "REQUSR", Convert.ToString ( dataTable.Rows [ i ] [ "REQUSR" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_ORGD", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_ORGDESC" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_NTAC", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_NTAC" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_NAME", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_NAME" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_STAT", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_STAT" ] ) );
-            //    inputTable [ i ].SetValue ( "/SIE/SWE_MM_COMT", Convert.ToString ( dataTable.Rows [ i ] [ "SWE_MM_COMT" ] ) );
-            //    inputTable [ i ].SetValue ( "BUKRS", Convert.ToString ( dataTable.Rows [ i ] [ "BUKRS" ] ) );
-            //    inputTable [ i ].SetValue ( "LAND1", Convert.ToString ( dataTable.Rows [ i ] [ "LAND1" ] ) );
-            //    inputTable [ i ].SetValue ( "EKORG", Convert.ToString ( dataTable.Rows [ i ] [ "EKORG" ] ) );
-            //    inputTable [ i ].SetValue ( "MATNR", Convert.ToString ( dataTable.Rows [ i ] [ "MATNR" ] ) );
-            //    inputTable [ i ].SetValue ( "TXZ01", Convert.ToString ( dataTable.Rows [ i ] [ "TXZ01" ] ) );
-            //    inputTable [ i ].SetValue ( "MENGE", Convert.ToDouble ( dataTable.Rows [ i ] [ "MENGE" ] ) );
-            //    inputTable [ i ].SetValue ( "MAXQTY", Convert.ToDouble ( dataTable.Rows [ i ] [ "MAXQTY" ] ) );
-            //    inputTable [ i ].SetValue ( "LIFNR", Convert.ToString ( dataTable.Rows [ i ] [ "LIFNR" ] ) );
-            //    inputTable [ i ].SetValue ( "NAME1", Convert.ToString ( dataTable.Rows [ i ] [ "NAME1" ] ) );
+            // get configuration for request companyCode, environment and operation
+            var _config = this.GetConfigurationForCompanyAndEnvironment ( companyCode, environment ).First ().BapiConfigurations.BapiConfigurations.Where ( x => x.Operation == operationName );
+            var _mapping = _config.First ().Mapping.First ();
+            if ( this.RfcDestination == null )
+                this.GetDestinationConfiguration ( applicationCode, companyCode, environment );
+            var repo01 = RfcDestination.Repository;
+            // get the bapi reference
+            IRfcFunction saveBAPI = repo01.CreateFunction ( _config.First ().BapiName );
+            IRfcTable inputTable = saveBAPI.GetTable ( _mapping.TableName );
+            inputTable.Append ( dataTable.Rows.Count );
+            for ( int i = 0; i < dataTable.Rows.Count; i++ )
+            {
+                foreach ( var m in _mapping.Mappings )
+                    if ( !m.IsReturnField )
+                        inputTable [ i ].SetValue ( m.SapName, Convert.ToString ( dataTable.Rows [ i ] [ m.FieldName ] ) );
+            }
 
-            //}
-
+            //return inputTable;
+            return null;
         }
 
 

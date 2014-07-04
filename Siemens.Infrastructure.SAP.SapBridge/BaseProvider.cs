@@ -69,7 +69,10 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         // ---------------------------------------------------------------------------------------------
 
 
-        protected internal IEnumerable<SapConfigurationEntry> ReadSpecificConnectionDataEntry ( string applicationCode, string environment, string companyCode, SapConfigurationSection configuration )
+        protected internal IEnumerable<SapConfigurationEntry> ReadSpecificConnectionDataEntry (
+            string applicationCode,
+            string environment,
+            string companyCode, SapConfigurationSection configuration )
         {
             if ( configuration == null )
                 configuration = this.ReadConfiguration ();
@@ -84,8 +87,9 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         protected internal Type FindInstanceInObjectGraph ( string typeName, object rootObject )
         {
+            
             if ( rootObject == null )
-                throw new ArgumentNullException ( "rootObject" );
+                return null;
 
             if ( String.IsNullOrWhiteSpace ( typeName ) )
                 throw new ArgumentException ( "The Type name indicated by parameter 'typeName' cannot be null" );
@@ -97,14 +101,30 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
             foreach ( var f in rootObject.GetType ().GetFields ( BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic ) )
             {
-                if ( f.FieldType.Namespace.Equals ( "System.Collections.Generic" ) )    // there has to be a better way, IList? other namespaces are to be checked too (non generic)
+
+                // there has to be a better way, IList? other namespaces are to be checked too (non generic)
+                // why did I put GenericTypeArguments.First()
+                if ( f.FieldType.Namespace.Equals ( "System.Collections.Generic" ) )
                 {
                     if ( f.FieldType.GenericTypeArguments.First ().FullName.Equals ( typeName ) )
                         return f.FieldType.GenericTypeArguments.First ();
                 }
+                else if ( f.FieldType.IsArray )
+                {
+
+                }
                 else
                     if ( f.FieldType.FullName.Equals ( typeName ) )
                         return f.FieldType;
+
+                // step inside if this field is a class and it is not a string 
+                if ( f.FieldType.IsClass && f.FieldType != typeof ( string ) )
+                {
+                    var _sub = this.FindInstanceInObjectGraph ( typeName, f.GetValue ( rootObject ) );
+                    if ( _sub != null )
+                        return _sub;
+                }
+
             }
 
             foreach ( var f in rootObject.GetType ().GetProperties ( BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic ) )
@@ -123,7 +143,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         // ---------------------------------------------------------------------------------------------
 
-        protected internal string FindBAPIForOperation(string companyCode, string environment, string operationName)
+        protected internal string FindBAPIForOperation ( string companyCode, string environment, string operationName )
         {
             var _x = this.GetConfigurationForCompanyAndEnvironment ( companyCode, environment );
             var opName = _x.First ().GetBAPIsAndOperations ().Where ( x => x.Item2 == operationName );
@@ -132,7 +152,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         // ---------------------------------------------------------------------------------------------
 
-        private List<SapConfigurationEntry> GetConfigurationForCompanyAndEnvironment ( string companyCode, string environment )
+        protected internal List<SapConfigurationEntry> GetConfigurationForCompanyAndEnvironment ( string companyCode, string environment )
         {
             var _x = this.Configuration.Entries.First ().SapConfigurationEntries.FindAll (
                 x => x.Company == companyCode && x.Environment == environment );
@@ -140,6 +160,21 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         }
 
         // ---------------------------------------------------------------------------------------------
+
+        protected internal RfcConfigParameters GetConnectionParameters ( string applicationCode,
+                                                                string environment,
+                                                                string operation,
+                                                                string companyCode,
+                                                                SapConfigurationSection configuration = null )
+        {
+
+            var configurationInstance = this.ReadSpecificConnectionDataEntry ( applicationCode, environment, companyCode, configuration );
+            return this.MapConnectionDataToRfcConfigParameters ( configurationInstance );
+
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
 
     }
 }
