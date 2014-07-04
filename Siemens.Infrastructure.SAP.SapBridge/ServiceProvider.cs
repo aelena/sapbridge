@@ -104,7 +104,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
             {
                 foreach ( var mapping in mappings )
                 {
-                    Type t = this.FindInstanceInObjectGraph ( mapping.TypeName, rootObject );
+                    Type t = this.FindTypeInObjectGraph ( mapping.TypeName, rootObject );
                 }
             }
         }

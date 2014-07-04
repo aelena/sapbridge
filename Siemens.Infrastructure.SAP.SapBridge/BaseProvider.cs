@@ -85,7 +85,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         // ---------------------------------------------------------------------------------------------
 
 
-        protected internal Type FindInstanceInObjectGraph ( string typeName, object rootObject )
+        protected internal Type FindTypeInObjectGraph ( string typeName, object rootObject )
         {
             
             if ( rootObject == null )
@@ -120,7 +120,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
                 // step inside if this field is a class and it is not a string 
                 if ( f.FieldType.IsClass && f.FieldType != typeof ( string ) )
                 {
-                    var _sub = this.FindInstanceInObjectGraph ( typeName, f.GetValue ( rootObject ) );
+                    var _sub = this.FindTypeInObjectGraph ( typeName, f.GetValue ( rootObject ) );
                     if ( _sub != null )
                         return _sub;
                 }
