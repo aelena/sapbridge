@@ -27,9 +27,21 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo", foo );
             t.Should ().NotBeNull ();
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Foo ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Foo", foo );
+            t.Should ().NotBeNull ();
+            t.Should ().Be ( foo );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -39,9 +51,21 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Bar", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Bar", foo );
             t.Should ().NotBeNull ();
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Bar" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Bar ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Bar", foo );
+            t.Should ().NotBeNull ();
+            t.Should ().Be ( foo.Bar );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -51,8 +75,19 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Baz", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Baz", foo );
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Baz" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Baz ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Baz", foo );
+            t.Should ().Be ( foo.BazList );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -62,8 +97,19 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Qux", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Qux", foo );
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Qux" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Qux ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Qux", foo );
+            t.Should ().Be ( foo.Quux );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -73,8 +119,19 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Corge", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Corge", foo );
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Corge" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Corge ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Corge", foo );
+            t.Should ().Be ( foo.Quux.Corge );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -84,8 +141,19 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Pippo", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Pippo", foo );
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Pippo" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Pippo ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Pippo", foo );
+            t.Should ().Be ( foo.Quux.Corge.PippoInstance );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -95,8 +163,19 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Snork", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Snork", foo );
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Snork" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Snork ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Snork", foo );
+            t.Should ().Be ( foo.Quux.Corge.PippoInstance.Snorkah );
         }
 
         // ---------------------------------------------------------------------------------------------
@@ -106,8 +185,19 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
         {
             var foo = new Foo ();
             var sp = new ServiceProvider ();
-            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Wombat", foo );
+            var t = sp.FindTypeInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Wombat", foo );
             t.FullName.Should ().BeEquivalentTo ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Wombat" );
+        }
+
+        // ---------------------------------------------------------------------------------------------
+
+        [Fact]
+        public void ShouldFindInstanceInObjectGraph_Wombat ()
+        {
+            var foo = new Foo ();
+            var sp = new ServiceProvider ();
+            var t = sp.FindInstanceInObjectGraph ( "Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies.Wombat", foo );
+            t.Should ().Be ( foo.Quux.Corge.PippoInstance.Snorkah.WombatInstance );
         }
 
         // ---------------------------------------------------------------------------------------------

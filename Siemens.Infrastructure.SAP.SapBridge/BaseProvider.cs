@@ -87,7 +87,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
 
         protected internal Type FindTypeInObjectGraph ( string typeName, object rootObject )
         {
-            
+
             if ( rootObject == null )
                 return null;
 
@@ -109,7 +109,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
                     if ( f.FieldType.GenericTypeArguments.First ().FullName.Equals ( typeName ) )
                         return f.FieldType.GenericTypeArguments.First ();
                 }
-                else if ( f.FieldType.IsArray )
+                else if ( f.FieldType.IsArray ) // TODO: Test for this...
                 {
 
                 }
@@ -133,6 +133,64 @@ namespace Siemens.Infrastructure.SAP.SapBridge
                         return null;
                     else
                         return f.PropertyType;
+
+            return null;
+
+            //(f.FieldType).IsClass
+
+        }
+
+
+        // ---------------------------------------------------------------------------------------------
+
+        protected internal object FindInstanceInObjectGraph ( string typeName, object rootObject )
+        {
+
+            if ( rootObject == null )
+                return null;
+
+            if ( String.IsNullOrWhiteSpace ( typeName ) )
+                throw new ArgumentException ( "The Type name indicated by parameter 'typeName' cannot be null" );
+
+
+            // simplest case first
+            if ( rootObject.GetType ().FullName.Equals ( typeName ) )
+                return rootObject;
+
+            foreach ( var f in rootObject.GetType ().GetFields ( BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic ) )
+            {
+
+                // there has to be a better way, IList? other namespaces are to be checked too (non generic)
+                // why did I put GenericTypeArguments.First()
+                if ( f.FieldType.Namespace.Equals ( "System.Collections.Generic" ) )
+                {
+                    if ( f.FieldType.GenericTypeArguments.First ().FullName.Equals ( typeName ) )
+                        return f.GetValue ( rootObject );
+                }
+                //else if ( f.FieldType.IsArray )
+                //{
+
+                //}
+                else
+                    if ( f.FieldType.FullName.Equals ( typeName ) )
+                        return f.GetValue ( rootObject );
+
+                // step inside if this field is a class and it is not a string 
+                if ( f.FieldType.IsClass && f.FieldType != typeof ( string ) )
+                {
+                    var _sub = this.FindInstanceInObjectGraph ( typeName, f.GetValue ( rootObject ) );
+                    if ( _sub != null )
+                        return _sub;
+                }
+
+            }
+
+            foreach ( var f in rootObject.GetType ().GetProperties ( BindingFlags.Instance | BindingFlags.Public | BindingFlags.NonPublic ) )
+                if ( f.PropertyType.FullName.Equals ( typeName ) )
+                    if ( f.PropertyType is IList )
+                        return null;
+                    else
+                        return f.GetValue ( rootObject );
 
             return null;
 

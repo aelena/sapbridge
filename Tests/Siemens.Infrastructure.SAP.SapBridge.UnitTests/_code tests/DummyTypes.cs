@@ -73,13 +73,13 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies
 
     internal class Pippo
     {
-        internal Snork snork = new Snork () { MySnorkyName = "Snork!" };
+        internal Snork Snorkah = new Snork () { MySnorkyName = "Snork!" };
     }
 
     public class Snork
     {
         public string MySnorkyName { get;set;}
-        internal Wombat SnorkInstance = new Wombat ();
+        internal Wombat WombatInstance = new Wombat ();
 
     }
 
