@@ -224,6 +224,14 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Internal_API_tests
 
         // ---------------------------------------------------------------------------------------------
 
+        [Fact]
+        public void ShouldFindAllTypes()
+        {
+            var bp = new BaseProvider ();
+            var allTypes = bp.FindAllTypes ( "1234", "Q", "/SIE/SWE_MM_GRTO3" );
+            allTypes.Should ().HaveCount ( 4 );
+        }
+
 
     }
 }
