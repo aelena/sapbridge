@@ -65,9 +65,27 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies
     internal sealed class Corge
     {
         internal string Hello = "I am a true Corge!";
+        internal Pippo PippoInstance = new Pippo ();
 
     }
 
     // ---------------------------------------------------------------------------------------------
 
+    internal class Pippo
+    {
+        internal Snork snork = new Snork () { MySnorkyName = "Snork!" };
+    }
+
+    public class Snork
+    {
+        public string MySnorkyName { get;set;}
+        internal Wombat SnorkInstance = new Wombat ();
+
+    }
+
+    public class Wombat
+    {
+        public string CustomerName { get; set; }
+        public string ProductName { get; set; }
+    }
 }
