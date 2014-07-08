@@ -97,17 +97,24 @@ namespace Siemens.Infrastructure.SAP.SapBridge
             var mappings = FindAllTypes ( companyCode, environment, bapiName );
             if ( mappings != null )
             {
+                var _instances = new List<object> ();
                 foreach ( var mapping in mappings )
                 {
-                    Type t = this.FindTypeInObjectGraph ( mapping.TypeName, rootObject );
+                    var t = this.FindInstanceInObjectGraph ( mapping.TypeName, rootObject );
+                    if ( t!= null)
+                    {
+
+                    }
                 }
+
+
             }
         }
 
 
         // ---------------------------------------------------------------------------------------------
 
-       
+
 
         public void MapObject_2 ( string companyCode,
                                 string environment,

@@ -48,10 +48,28 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DeltaServiceTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Siemens.Infrastructure.SAP.SapBridge\Siemens.Infrastructure.SAP.SapBridge.csproj">
+      <Project>{dcb33877-d2ab-4057-a206-30a862506db0}</Project>
+      <Name>Siemens.Infrastructure.SAP.SapBridge</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Siemens.W4E.SAP.DeltaService\Siemens.W4E.SAP.DeltaService.csproj">
+      <Project>{9e12b400-5d28-4ad8-b74b-a3d0899017e8}</Project>
+      <Name>Siemens.W4E.SAP.DeltaService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Siemens.Infrastructure.SAP.SapBridge.UnitTests\Siemens.Infrastructure.SAP.SapBridge.UnitTests.csproj">
+      <Project>{8f0531df-f423-46df-9830-b037172237bf}</Project>
+      <Name>Siemens.Infrastructure.SAP.SapBridge.UnitTests</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

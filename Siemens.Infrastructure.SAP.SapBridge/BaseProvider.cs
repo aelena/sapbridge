@@ -69,7 +69,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
         // ---------------------------------------------------------------------------------------------
 
 
-        protected internal IEnumerable<SapConfigurationEntry> ReadSpecificConnectionDataEntry (
+        protected internal IQueryable<SapConfigurationEntry> ReadSpecificConnectionDataEntry (
             string applicationCode,
             string environment,
             string companyCode, SapConfigurationSection configuration )
@@ -79,7 +79,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge
             var configurationInstance = configuration.Entries.Where ( x => x.Name == applicationCode.Trim ().ToUpperInvariant () )
                  .First ().SapConfigurationEntries.Where ( x => x.Environment == environment.Trim ().ToUpperInvariant () &&
                  x.Company == companyCode.Trim ().ToUpperInvariant () );
-            return configurationInstance;
+            return configurationInstance.AsQueryable ();
         }
 
         // ---------------------------------------------------------------------------------------------
