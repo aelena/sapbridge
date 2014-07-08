@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siemens.Infrastructure.SAP.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siemens.Infrastructure.SAP.SapBridge", "Siemens.Infrastructure.SAP.SapBridge\Siemens.Infrastructure.SAP.SapBridge.csproj", "{DCB33877-D2AB-4057-A206-30A862506DB0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siemens.W4E.SAP.DeltaService", "Siemens.W4E.SAP.DeltaService\Siemens.W4E.SAP.DeltaService.csproj", "{9E12B400-5D28-4AD8-B74B-A3D0899017E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Siemens.W4E.SAP.DeltaService.UnitTests", "Tests\Siemens.W4E.SAP.DeltaService.UnitTests\Siemens.W4E.SAP.DeltaService.UnitTests.csproj", "{965BF42E-0ECE-471E-B0C8-46A89390B3A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,11 +33,20 @@ Global
 		{DCB33877-D2AB-4057-A206-30A862506DB0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCB33877-D2AB-4057-A206-30A862506DB0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DCB33877-D2AB-4057-A206-30A862506DB0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E12B400-5D28-4AD8-B74B-A3D0899017E8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E12B400-5D28-4AD8-B74B-A3D0899017E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E12B400-5D28-4AD8-B74B-A3D0899017E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E12B400-5D28-4AD8-B74B-A3D0899017E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{965BF42E-0ECE-471E-B0C8-46A89390B3A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{965BF42E-0ECE-471E-B0C8-46A89390B3A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{965BF42E-0ECE-471E-B0C8-46A89390B3A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{965BF42E-0ECE-471E-B0C8-46A89390B3A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{8F0531DF-F423-46DF-9830-B037172237BF} = {47F9388C-3F31-4249-9BE2-90B9DD8132E6}
+		{965BF42E-0ECE-471E-B0C8-46A89390B3A8} = {47F9388C-3F31-4249-9BE2-90B9DD8132E6}
 	EndGlobalSection
 EndGlobal
