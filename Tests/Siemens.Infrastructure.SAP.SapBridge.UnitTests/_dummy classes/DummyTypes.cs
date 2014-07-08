@@ -6,12 +6,17 @@ using System.Threading.Tasks;
 
 namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies
 {
-    internal sealed class Foo
+
+    internal class SimpleFoo
     {
         internal string FooField = "I am Foo instance!";
         internal string Message = "My message to the world is...";
         internal int Age = 23139;
         internal double Cash = 2399393.29;
+    }
+
+    internal sealed class Foo : SimpleFoo
+    {
 
         internal Bar Bar;
         internal List<Baz> BazList = new List<Baz> ();
