@@ -65,7 +65,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UtilsTests.cs" />
     <Compile Include="_code tests\CodingTests.cs" />
-    <Compile Include="_code tests\DummyTypes.cs" />
+    <Compile Include="_dummy classes\DummyTypes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -84,9 +84,7 @@
       <Name>Siemens.Infrastructure.SAP.SapBridge</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="_dummy classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
