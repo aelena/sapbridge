@@ -13,7 +13,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         [Fact]
         public void SimpleDataTableCreationShouldReturnNullOnNullList()
         {
-            var u = new Utils ();
+            var u = new SapUtilities ();
             u.CreateSimpleTable ( null ).Should ().BeNull ();
         }
 
@@ -22,7 +22,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         [Fact]
         public void SimpleDataTableCreationShouldReturnEmptyTableOnEmptyList ()
         {
-            var u = new Utils ();
+            var u = new SapUtilities ();
             u.CreateSimpleTable ( new List<string>() ).Columns.Should ().HaveCount ( 0 );
         }
 
@@ -31,7 +31,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests
         [Fact]
         public void SimpleDataTableCreationShouldCreateCorrectly ()
         {
-            var u = new Utils ();
+            var u = new SapUtilities ();
             u.CreateSimpleTable ( new List<String> { "COL_A", "COL_B", "COL_C" } ).Columns.Should ().HaveCount ( 3 );
         }
 

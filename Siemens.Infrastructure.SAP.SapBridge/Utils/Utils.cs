@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Siemens.Infrastructure.SAP.SapBridge
 {
-    public sealed class Utils
+    public sealed class SapUtilities
     {
 
         /// <summary>

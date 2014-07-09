@@ -60,7 +60,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.External_API_tests
         public void ShouldMapSimpleObjectToDataTable ()
         {
             var sp = new ServiceProvider ();
-            Utils u = new Utils ();
+            var u = new SapUtilities ();
             var dt = u.CreateSimpleTable ( new List<string> { "EBELP", "EBELN", "SWE_MM_TICK" } );
             var mappedTable = sp.MapDataTableToIRfcTable ( "MDM", "1234", "Q", "WRITEGRTDATA", dt );
             mappedTable.Should ().NotBeNull ();
