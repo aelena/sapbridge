@@ -53,6 +53,8 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -75,6 +77,8 @@
     <Compile Include="UtilsTests.cs" />
     <Compile Include="_code tests\CodingTests.cs" />
     <Compile Include="_dummy classes\DummyTypes.cs" />
+    <Compile Include="_dummy classes\interfaces.cs" />
+    <Compile Include="_dummy classes\mdm_classes.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
