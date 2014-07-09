@@ -41,23 +41,32 @@ namespace Siemens.W4E.SAP.DeltaService
                 // return only non-null instances
                 return delta.Where ( x => x != null );
             }
+            else
+            {
+                // if we need to dive deep down...
+                var _origValues = this.GetValuesAndNames ( original, bindingFlags );
+                var _newValues = this.GetValuesAndNames ( newer, bindingFlags );
+                for( int i = 0; i < _origValues.Count(); i++ )
+                {
+                }
 
+            }
 
             return null;
         }
 
 
 
-        private IEnumerable<NameValuePair> GetValuesAndNames ( object target, BindingFlags bindingFlags )
+        private IEnumerable<MemberBasicInfo> GetValuesAndNames ( object target, BindingFlags bindingFlags )
         {
             return ( target == null ) ? null :
                     target.GetType ()
                    .GetProperties ( bindingFlags )
-                   .Select ( p => new NameValuePair ( p.Name, p.GetValue ( target, null ) ) )
+                   .Select ( p => new MemberBasicInfo ( p.Name, p.GetValue ( target, null ) ) )
                    .Concat ( target
                    .GetType ()
                    .GetFields ( bindingFlags )
-                   .Select ( f => new NameValuePair ( f.Name, f.GetValue ( target ) ) ) );
+                   .Select ( f => new MemberBasicInfo ( f.Name, f.GetValue ( target ) ) ) );
         }
 
 

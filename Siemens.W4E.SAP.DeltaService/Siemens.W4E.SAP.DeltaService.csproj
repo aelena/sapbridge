@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="DeltaItem.cs" />
     <Compile Include="DeltaProvider.cs" />
-    <Compile Include="NameValuePair.cs" />
+    <Compile Include="MemberBasicInfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueAndNameCollectingVisitor.cs" />
   </ItemGroup>

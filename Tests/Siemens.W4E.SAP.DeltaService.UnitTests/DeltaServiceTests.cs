@@ -21,9 +21,7 @@ namespace Siemens.W4E.SAP.DeltaService.UnitTests
             var deltaProvider = new DeltaProvider ();
             var delta = deltaProvider.FindDelta<SimpleFoo> ( fooOriginal, fooNew );
             delta.Should ().HaveCount ( 2 );
-
         }
-
 
         [Fact]
         public void ShouldNotCrashOnNullField ()
@@ -35,6 +33,24 @@ namespace Siemens.W4E.SAP.DeltaService.UnitTests
             var deltaProvider = new DeltaProvider ();
             var delta = deltaProvider.FindDelta<SimpleFoo> ( fooOriginal, fooNew );
             delta.Should ().HaveCount ( 2 );
+        }
+
+        [Fact]
+        public void ShouldNotCrashOnNullInstance_1 ()
+        {
+            var fooOriginal = new SimpleFoo ();
+            var deltaProvider = new DeltaProvider ();
+            var delta = deltaProvider.FindDelta<SimpleFoo> ( fooOriginal, null );
+            delta.Should ().BeNull ();
+        }
+
+        [Fact]
+        public void ShouldNotCrashOnNullInstance_2 ()
+        {
+            var fooOriginal = new SimpleFoo ();
+            var deltaProvider = new DeltaProvider ();
+            var delta = deltaProvider.FindDelta<SimpleFoo> ( null, fooOriginal );
+            delta.Should ().BeNull ();
         }
     }
 }
