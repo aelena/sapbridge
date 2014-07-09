@@ -44,11 +44,18 @@
   <ItemGroup>
     <Compile Include="DeltaItem.cs" />
     <Compile Include="DeltaProvider.cs" />
+    <Compile Include="NameValuePair.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValueAndNameCollectingVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Siemens.Infrastructure.SAP.SapBridge\Siemens.Infrastructure.SAP.SapBridge.csproj">
+      <Project>{dcb33877-d2ab-4057-a206-30a862506db0}</Project>
+      <Name>Siemens.Infrastructure.SAP.SapBridge</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
