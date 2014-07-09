@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Siemens.Infrastructure.SAP.SapBridge.Utils;
+
 
 namespace Siemens.W4E.SAP.DeltaService
 {
@@ -66,8 +64,8 @@ namespace Siemens.W4E.SAP.DeltaService
         /// <returns></returns>
         public override string ToString ()
         {
-            return string.Format ( "Field '{0}' : in origin {0}, in second instance {1}", this.FieldName,
-                this.FieldValueInFirstInstance.ToString(), this.FieldValueInSecondInstance.ToString() );
+            return string.Format ( "Field '{0}' : in origin {1}, in second instance {2}", this.FieldName,
+                this.FieldValueInFirstInstance.ToStringSafe(), this.FieldValueInSecondInstance.ToStringSafe() );
         }
 
     }
