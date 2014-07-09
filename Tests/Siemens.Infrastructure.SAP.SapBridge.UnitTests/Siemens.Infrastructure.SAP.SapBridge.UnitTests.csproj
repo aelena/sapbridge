@@ -36,6 +36,14 @@
     <Reference Include="FluentAssertions.Core">
       <HintPath>..\..\packages\FluentAssertions.3.0.107\lib\net45\FluentAssertions.Core.dll</HintPath>
     </Reference>
+    <Reference Include="MDMC_EntityLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_mdm legacy libs for tests\MDMC_EntityLayer.dll</HintPath>
+    </Reference>
+    <Reference Include="MDM_EntityLayer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>_mdm legacy libs for tests\MDM_EntityLayer.dll</HintPath>
+    </Reference>
     <Reference Include="sapnco">
       <HintPath>..\..\..\_old\MADAM__CODE\MADAM__CODE\Atos_W4E\BranchesW4E_WebEntityApplication\Main\bin\sapnco.dll</HintPath>
     </Reference>
@@ -57,6 +65,7 @@
   <ItemGroup>
     <Compile Include="ConfigurationFileTests.cs" />
     <Compile Include="CustomConfigurationTests.cs" />
+    <Compile Include="DeltaServiceTests.cs" />
     <Compile Include="External API tests\ServiceProviderTests.cs" />
     <Compile Include="Internal API tests\BaseProviderTests.cs" />
     <Compile Include="Internal API tests\CardinalityTests.cs" />
@@ -82,6 +91,10 @@
     <ProjectReference Include="..\..\Siemens.Infrastructure.SAP.SapBridge\Siemens.Infrastructure.SAP.SapBridge.csproj">
       <Project>{dcb33877-d2ab-4057-a206-30a862506db0}</Project>
       <Name>Siemens.Infrastructure.SAP.SapBridge</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Siemens.W4E.SAP.DeltaService\Siemens.W4E.SAP.DeltaService.csproj">
+      <Project>{9e12b400-5d28-4ad8-b74b-a3d0899017e8}</Project>
+      <Name>Siemens.W4E.SAP.DeltaService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
