@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies
 {
 
-    internal class SimpleFoo
+    public class SimpleFoo
     {
         internal string FooField = "I am Foo instance!";
         internal string Message = "My message to the world is...";
@@ -15,7 +15,7 @@ namespace Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies
         internal double Cash = 2399393.29;
     }
 
-    internal class SimpleFoo2
+    public class SimpleFoo2
     {
         internal string FooField = "I am Foo instance!";
         internal string Message = "My message to the world is...";

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Xunit;
 using Siemens.Infrastructure.SAP.SapBridge.UnitTests.Dummies;
 using FluentAssertions;
+using Xunit.Extensions;
+using System.Collections;
+using Siemens.Infrastructure.SAP.SapBridge.UnitTests._dummy_classes;
 
 namespace Siemens.W4E.SAP.DeltaService.UnitTests
 {
@@ -222,15 +225,30 @@ namespace Siemens.W4E.SAP.DeltaService.UnitTests
 
         #region " --- FindDelta<T,U> tests --- "
 
-
-        [Fact]
-        public void DeltaService_FindDeltasForInstancesOfDifferentType_1 ()
+        public class Shitdata : IEnumerable<object []>
         {
-            var sf1 = new SimpleFoo ();
-            var sf2 = new SimpleFoo2 ();
+            private readonly List<object []> _data = new List<object []>
+            {
+                new object[] { new SimpleFoo (), new SimpleFoo2(), 0},
+                new object[] { new SimpleFoo (){ Cash = 1 }, new SimpleFoo2(){ Cash = 2 }, 1}
+            };
+
+            public IEnumerator<object []> GetEnumerator ()
+            { return _data.GetEnumerator (); }
+
+            IEnumerator IEnumerable.GetEnumerator ()
+            { return GetEnumerator (); }
+        }
+
+        #region " --- with simple types --- "
+
+        [Theory,
+            ClassData ( typeof ( Shitdata ) )]
+        public void DeltaService_FindDeltasForInstancesOfDifferentType_1 ( SimpleFoo o1, SimpleFoo2 o2, int deltaCount )
+        {
             var deltaProvider = new DeltaProvider ();
-            var deltas = deltaProvider.FindDelta<SimpleFoo, SimpleFoo2> ( sf1, sf2 );
-            deltas.Should ().HaveCount ( 0 );
+            var deltas = deltaProvider.FindDelta<SimpleFoo, SimpleFoo2> ( o1, o2 );
+            deltas.Should ().HaveCount ( deltaCount );
         }
 
         [Fact]
@@ -259,7 +277,7 @@ namespace Siemens.W4E.SAP.DeltaService.UnitTests
         {
             var sf2 = new SimpleFoo2 ();
             var deltaProvider = new DeltaProvider ();
-            var deltas = deltaProvider.FindDelta<SimpleFoo, SimpleFoo2> ( null, sf2);
+            var deltas = deltaProvider.FindDelta<SimpleFoo, SimpleFoo2> ( null, sf2 );
             deltas.Should ().BeNull ();
         }
 
@@ -272,6 +290,24 @@ namespace Siemens.W4E.SAP.DeltaService.UnitTests
             var deltas = deltaProvider.FindDelta<SimpleFoo, Qux> ( sf1, q );
             deltas.Should ().HaveCount ( 0 );
         }
+
+        #endregion
+
+        #region " --- with bigger types --- "
+        
+        // TODO: this has to be done with the real live application objects...
+
+        //[Fact]
+        //public void DeltaService_FindDeltasForDefaultMDMCInstances()
+        //{
+        //    var req1 = new MDMC_Requests ();
+        //    var req2 = new MDMC_RequestsSAP ();
+        //    var deltaProvider = new DeltaProvider ();
+        //    var deltas = deltaProvider.FindDelta ( req1, req2 );
+        //    deltas.Should ().HaveCount ( 0 );
+        //}
+
+        #endregion
 
         #endregion
 
